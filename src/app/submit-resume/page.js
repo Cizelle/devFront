@@ -21,15 +21,26 @@ const SubmitResumePage = () => {
 
     try {
       const formData = new FormData();
-      formData.append("resume", selectedFile);
+      formData.append("submit-resume", selectedFile); // Correct key name
 
-      const response = await fetch("/api/upload-resume", {
+      const userId = "67e6e9a846db7a0f471f9c35"; // Hardcoded user ID for testing
+
+      if (userId) {
+        formData.append("userId", userId); // Include userId
+      } else {
+        setUploadStatus("Upload failed: User ID not found.");
+        return;
+      }
+
+      const response = await fetch("http://localhost:5000/api/upload-resume", {
+        // Full backend URL
         method: "POST",
         body: formData,
       });
 
       if (response.ok) {
         setUploadStatus("Resume uploaded successfully!");
+        // Optionally, you can redirect the user or update UI upon success
       } else {
         const errorData = await response.json();
         setUploadStatus(
@@ -43,9 +54,7 @@ const SubmitResumePage = () => {
   };
 
   return (
-    <div
-      className="min-h-screen flex flex-col justify-center items-center bg-purple-50 py-12 px-4 sm:px-6 lg:px-8 bg-[url('/grid.svg')] bg-repeat" // Added background classes
-    >
+    <div className="min-h-screen flex flex-col justify-center items-center bg-purple-50 py-12 px-4 sm:px-6 lg:px-8 bg-[url('/grid.svg')] bg-repeat">
       <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
         <h2 className="text-2xl font-bold text-purple-700 mb-6 text-center">
           Submit Your Resume

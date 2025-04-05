@@ -51,9 +51,8 @@ const RoadmapPage = () => {
         const title = match[2]?.trim();
         const content = match[3]?.trim();
         parsedSections.push({ level, title, content });
-      }
+      } // If no explicit headings are found, treat the whole description as one section
 
-      // If no explicit headings are found, treat the whole description as one section
       if (
         parsedSections.length === 0 &&
         roadmapData.description.trim() !== ""
@@ -72,7 +71,9 @@ const RoadmapPage = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-purple-50">
+               {" "}
         <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+             {" "}
       </div>
     );
   }
@@ -80,10 +81,13 @@ const RoadmapPage = () => {
   if (error) {
     return (
       <div className="flex justify-center items-center h-screen bg-purple-50">
+               {" "}
         <div className="bg-white shadow-md rounded-lg px-8 py-6">
-          <h2 className="text-xl font-bold text-red-500 mb-4">Error</h2>
-          <p className="text-gray-700">{error}</p>
+                   {" "}
+          <h2 className="text-xl font-bold text-red-500 mb-4">Error</h2>       
+            <p className="text-gray-700">{error}</p>       {" "}
         </div>
+             {" "}
       </div>
     );
   }
@@ -91,12 +95,16 @@ const RoadmapPage = () => {
   if (!roadmapData) {
     return (
       <div className="flex justify-center items-center h-screen bg-purple-50">
+               {" "}
         <div className="bg-white shadow-md rounded-lg px-8 py-6">
+                   {" "}
           <h2 className="text-xl font-bold text-gray-700 mb-4">
-            Roadmap Not Found
+                        Roadmap Not Found          {" "}
           </h2>
-          <p className="text-gray-600">No roadmap data available.</p>
+                    <p className="text-gray-600">No roadmap data available.</p> 
+               {" "}
         </div>
+             {" "}
       </div>
     );
   }
@@ -106,38 +114,49 @@ const RoadmapPage = () => {
   };
 
   return (
-    <div className="bg-purple-50 min-h-screen py-10 mt-8">
+    <div className="bg-purple-50 min-h-screen py-10">
+      {" "}
+      {/* Removed mt-8 */}     {" "}
       <div className="container mx-auto p-6 bg-white shadow-md rounded-lg max-w-3xl">
+               {" "}
         <h1 className="text-3xl font-bold text-purple-700 mb-6 text-center">
-          {roadmapData.title || "Personalized Learning Roadmap"}
+                    {roadmapData.title || "Personalized Learning Roadmap"}     
+           {" "}
         </h1>
-
+               {" "}
         {sections.length > 0 ? (
           sections.map((section, index) => (
             <div
               key={index}
               className="mb-8 p-6 rounded-lg shadow-md border border-purple-200 bg-purple-100"
             >
+                           {" "}
               {section.title && (
                 <>
+                                   {" "}
                   {section.level === "##" && (
                     <h2 className="text-2xl font-bold text-purple-700 mb-4">
-                      {section.title}
+                                            {section.title}                   {" "}
                     </h2>
                   )}
+                                   {" "}
                   {section.level === "###" && (
                     <h3 className="text-xl font-bold text-purple-600 mb-3">
-                      {section.title}
+                                            {section.title}                   {" "}
                     </h3>
                   )}
+                                   {" "}
                   {section.level === "####" && (
                     <h4 className="text-lg font-bold text-purple-500 mb-2">
-                      {section.title}
+                                            {section.title}                   {" "}
                     </h4>
                   )}
+                                 {" "}
                 </>
               )}
+                           {" "}
               <div className="space-y-4">
+                               {" "}
                 {section.content
                   .split("\n\n")
                   .filter((item) => item.trim() !== "")
@@ -146,15 +165,19 @@ const RoadmapPage = () => {
                       key={stepIndex}
                       className="p-4 rounded-lg bg-white shadow-sm border border-gray-200"
                     >
+                                           {" "}
                       <p
                         className="text-gray-800"
                         dangerouslySetInnerHTML={{
                           __html: renderStepWithBold(step),
                         }}
                       />
+                                         {" "}
                     </div>
                   ))}
+                             {" "}
               </div>
+                         {" "}
             </div>
           ))
         ) : (
@@ -168,7 +191,9 @@ const RoadmapPage = () => {
             }}
           />
         )}
+             {" "}
       </div>
+         {" "}
     </div>
   );
 };
