@@ -51,8 +51,7 @@ const RoadmapPage = () => {
         const title = match[2]?.trim();
         const content = match[3]?.trim();
         parsedSections.push({ level, title, content });
-      } // If no explicit headings are found, treat the whole description as one section
-
+      }
       if (
         parsedSections.length === 0 &&
         roadmapData.description.trim() !== ""
@@ -114,12 +113,12 @@ const RoadmapPage = () => {
   };
 
   return (
-    <div className="bg-purple-50 min-h-screen py-10">
+    <div className="bg-purple-50 min-h-screen py-6">
       {" "}
       {/* Removed mt-8 */}     {" "}
-      <div className="container mx-auto p-6 bg-white shadow-md rounded-lg max-w-3xl">
+      <div className="container mx-auto p-4 bg-white shadow-md rounded-lg max-w-2xl">
                {" "}
-        <h1 className="text-3xl font-bold text-purple-700 mb-6 text-center">
+        <h1 className="text-2xl font-bold text-purple-700 mb-4 text-center">
                     {roadmapData.title || "Personalized Learning Roadmap"}     
            {" "}
         </h1>
@@ -128,26 +127,26 @@ const RoadmapPage = () => {
           sections.map((section, index) => (
             <div
               key={index}
-              className="mb-8 p-6 rounded-lg shadow-md border border-purple-200 bg-purple-100"
+              className="mb-6 p-4 rounded-lg shadow-md border border-purple-200 bg-purple-100"
             >
                            {" "}
               {section.title && (
                 <>
                                    {" "}
                   {section.level === "##" && (
-                    <h2 className="text-2xl font-bold text-purple-700 mb-4">
+                    <h2 className="text-2xl font-bold text-purple-700 mb-3">
                                             {section.title}                   {" "}
                     </h2>
                   )}
                                    {" "}
                   {section.level === "###" && (
-                    <h3 className="text-xl font-bold text-purple-600 mb-3">
+                    <h3 className="text-xl font-bold text-purple-600 mb-2">
                                             {section.title}                   {" "}
                     </h3>
                   )}
                                    {" "}
                   {section.level === "####" && (
-                    <h4 className="text-lg font-bold text-purple-500 mb-2">
+                    <h4 className="text-lg font-bold text-purple-500 mb-1">
                                             {section.title}                   {" "}
                     </h4>
                   )}
@@ -155,7 +154,7 @@ const RoadmapPage = () => {
                 </>
               )}
                            {" "}
-              <div className="space-y-4">
+              <div className="space-y-2">
                                {" "}
                 {section.content
                   .split("\n\n")
@@ -163,7 +162,7 @@ const RoadmapPage = () => {
                   .map((step, stepIndex) => (
                     <div
                       key={stepIndex}
-                      className="p-4 rounded-lg bg-white shadow-sm border border-gray-200"
+                      className="py-2 px-3 rounded-lg bg-white shadow-sm border border-gray-200"
                     >
                                            {" "}
                       <p

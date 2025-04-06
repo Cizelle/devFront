@@ -1,33 +1,15 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Menu } from "lucide-react";
 import FlowingMenu from "./FlowingMenu";
+import { UserButton, useAuth } from "@clerk/nextjs";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [username, setUsername] = useState("");
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    // This ensures the component is only interacting with client-side features after hydration
-    setIsMounted(true);
-    const user = localStorage.getItem("currentUser");
-    try {
-      if (user) {
-        const parsedUser = JSON.parse(user);
-        setUsername(parsedUser.username);
-      }
-    } catch (error) {
-      console.error("Invalid JSON in localStorage:", error);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser");
-    window.location.href = "/"; // redirect to start page
-  };
-
+  const { isSignedIn, user } = useAuth();
   const demoItems = [
     {
       link: "/",
@@ -64,23 +46,24 @@ const Navbar = () => {
           <h1 className="text-3xl font-bold">Devians</h1>
         </div>
 
-        {/* Center: Welcome Message (only after mount) */}
-        {isMounted && username && (
+        {isSignedIn && user && (
           <div className="text-xl font-semibold hidden md:block">
-            Welcome, <span className="font-bold">{username}</span>
+            Welcome,{" "}
+            <span className="font-bold">
+              {user.firstName} {user.lastName}
+            </span>
           </div>
         )}
 
-        {/* Right: Menu + Logout */}
         <div className="flex items-center space-x-4">
-          {isMounted && username && (
-            <button
-              onClick={handleLogout}
-              className="font-bold bg-purple-500 shadow-purple-900 rounded-full p-2 md:p-2 cursor-pointer"
-            >
-              Logout
-            </button>
+          {!isSignedIn && (
+            <Link href="/register">
+              <button className="font-bold bg-purple-500 shadow-purple-900 rounded-full p-2 md:p-2 cursor-pointer">
+                Login
+              </button>
+            </Link>
           )}
+          {isSignedIn && <UserButton afterSignOutUrl="/" />}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center space-x-2 text-lg font-bold focus:outline-none"
@@ -99,7 +82,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

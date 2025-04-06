@@ -1,4 +1,3 @@
-// app/mentors/page.js
 import Image from "next/image";
 
 const mentors = [
