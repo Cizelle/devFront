@@ -151,11 +151,13 @@ const page = () => {
                   />
                 </InfiniteSlider>
               </div>
-              <div className="input-group mb-2 md:my-8">
-                <button className="font-bold bg-purple-300 shadow-purple-900 rounded-full p-3 md:p-5 cursor-pointer">
-                  Explore All Plans
-                </button>
-              </div>
+              <Link href="/mentors">
+                <div className="input-group mb-2 md:my-8">
+                  <button className="font-bold bg-purple-300 shadow-purple-900 rounded-full p-3 md:p-5 cursor-pointer">
+                    Explore All Plans
+                  </button>
+                </div>
+              </Link>
             </div>
           </section>
 

@@ -29,10 +29,26 @@ const Navbar = () => {
   };
 
   const demoItems = [
-    { link: "/", text: "Home", image: "https://picsum.photos/600/400?random=1" },
-    { link: "/", text: "About", image: "https://picsum.photos/600/400?random=2" },
-    { link: "/", text: "Pricing", image: "https://picsum.photos/600/400?random=3" },
-    { link: "/", text: "Contact Us", image: "https://picsum.photos/600/400?random=4" },
+    {
+      link: "/",
+      text: "Home",
+      image: "https://picsum.photos/600/400?random=1",
+    },
+    {
+      link: "/",
+      text: "About",
+      image: "https://picsum.photos/600/400?random=2",
+    },
+    {
+      link: "/",
+      text: "Pricing",
+      image: "https://picsum.photos/600/400?random=3",
+    },
+    {
+      link: "/",
+      text: "Contact Us",
+      image: "https://picsum.photos/600/400?random=4",
+    },
   ];
 
   return (
@@ -60,7 +76,7 @@ const Navbar = () => {
           {isMounted && username && (
             <button
               onClick={handleLogout}
-              className="font-bold bg-purple-300 shadow-purple-900 rounded-full p-3 md:p-5 cursor-pointer"
+              className="font-bold bg-purple-500 shadow-purple-900 rounded-full p-2 md:p-2 cursor-pointer"
             >
               Logout
             </button>

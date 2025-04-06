@@ -21,12 +21,10 @@ const SubmitResumePage = () => {
 
     try {
       const formData = new FormData();
-      formData.append("submit-resume", selectedFile); // Correct key name
-
-      const userId = "67e6e9a846db7a0f471f9c35"; // Hardcoded user ID for testing
-
+      formData.append("submit-resume", selectedFile);
+      const userId = "67e6e9a846db7a0f471f9c35";
       if (userId) {
-        formData.append("userId", userId); // Include userId
+        formData.append("userId", userId);
       } else {
         setUploadStatus("Upload failed: User ID not found.");
         return;
@@ -60,8 +58,7 @@ const SubmitResumePage = () => {
           Submit Your Resume
         </h2>
         <p className="text-gray-700 mb-4">
-          Please upload your resume file here. We support PDF and DOC/DOCX
-          formats.
+          Please upload your resume file here. We support PDF format.
         </p>
         <div className="mb-4">
           <label
@@ -103,9 +100,15 @@ const SubmitResumePage = () => {
           <Link
             href="/chat?hasResume=true"
             className="text-purple-600 hover:underline text-sm"
-          >
-            Go back to chat (without uploading)
-          </Link>
+          ></Link>
+          <div className="mt-6 flex justify-center">
+            <Link
+              href="/displayextractedtext"
+              className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            >
+              View Resume
+            </Link>
+          </div>
         </div>
       </div>
     </div>

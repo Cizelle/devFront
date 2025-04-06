@@ -136,7 +136,7 @@ const Manager = () => {
 
         <div
           className="w-1/2 h-screen bg-cover bg-center border-2 border-solid"
-          style={{ backgroundImage: "url('/login.webp')" }}
+          style={{ backgroundImage: "url('/login_page.jpg')" }}
         ></div>
       </div>
     </ReactLenis>
